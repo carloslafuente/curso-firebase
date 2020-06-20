@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "bolivian-guy": {
+      "hosting": {
+        "ui": [
+          "bolivian-guy"
+        ]
+      }
+    }
+  }
+}
