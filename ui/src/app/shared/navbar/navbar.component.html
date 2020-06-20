@@ -1,0 +1,57 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'push' : 'push'"
+  >
+    <mat-toolbar class="toolbar">Menu</mat-toolbar>
+    <mat-nav-list class="mat-list-item">
+      <a
+        mat-list-item
+        [routerLink]="['/']"
+        routerLinkActive="router-link-active"
+      >
+        Inicio
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar class="bar-menu" color="primary">
+      <!-- <mat-toolbar-row>
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+        >
+          <mat-icon color="accent" aria-label="Side nav toggle icon">
+            menu
+          </mat-icon>
+        </button>
+      </mat-toolbar-row> -->
+
+      <mat-toolbar-row>
+        <span> Encuentra los Videos mas poderosos de los geeks</span>
+        <span class="example-spacer"></span>
+        <figure class="header-avatar">
+          <img id="avatar" src="assets/imagenes/usuario.png" alt="Avatar" />
+        </figure>
+      </mat-toolbar-row>
+
+      <mat-toolbar-row class="session-row">
+        <button mat-raised-button color="accent">Iniciar Sesion</button>
+      </mat-toolbar-row>
+
+      <mat-toolbar-row class="buttons-row">
+        <button mat-raised-button color="primary">Todos los posts</button>
+        <button mat-raised-button color="primary">Mis posts</button>
+        <button mat-raised-button color="primary">Realizar un post</button>
+        <button mat-raised-button color="primary">Contactanos</button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <ng-content style="height: 100%;"></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>
