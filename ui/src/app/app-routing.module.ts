@@ -17,7 +17,7 @@ const belongsToAccount = (next) => hasCustomClaim(`account-${next.params.id}`);
 const editorOnly = () =>
   pipe(
     customClaims,
-    map((claims) => claims.email === 'carlitosrlfs@gmail.com')
+    map((claims) => claims.email === 'carlos.lafuente.dev@gmail.com')
   );
 
 const routes: Routes = [

@@ -44,12 +44,12 @@
 
       <mat-toolbar-row class="session-row">
         <div *ngIf="auth.user | async as user; else showLogin">
-          <span [ngStyle]="{ 'margin-right': '15px' }"
-            >Hola {{ user.displayName }}!</span
-          >
           <button (click)="logout()" mat-raised-button color="accent">
             Salir
           </button>
+          <span [ngStyle]="{ 'margin-left': '15px' }"
+            >Hola {{ user.displayName }}!</span
+          >
         </div>
         <ng-template #showLogin>
           <button (click)="login()" mat-raised-button color="accent">
