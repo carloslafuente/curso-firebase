@@ -7,6 +7,7 @@ import { AngularFireModule } from '@angular/fire';
 // import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from 'src/environments/environment';
+import { NavbarModule } from 'src/app/shared/navbar/navbar.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,6 +15,7 @@ import { environment } from 'src/environments/environment';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    NavbarModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
   ],

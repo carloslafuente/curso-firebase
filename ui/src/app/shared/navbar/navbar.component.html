@@ -36,20 +36,45 @@
       <mat-toolbar-row>
         <span> Encuentra los Videos mas poderosos de los geeks</span>
         <span class="example-spacer"></span>
-        <figure class="header-avatar">
-          <img id="avatar" src="assets/imagenes/usuario.png" alt="Avatar" />
+
+        <figure *ngIf="auth.user | async as user" class="header-avatar">
+          <img id="avatar" [src]="user.photoURL" alt="Avatar" />
         </figure>
       </mat-toolbar-row>
 
       <mat-toolbar-row class="session-row">
-        <button mat-raised-button color="accent">Iniciar Sesion</button>
+        <div *ngIf="auth.user | async as user; else showLogin">
+          <span [ngStyle]="{ 'margin-right': '15px' }"
+            >Hola {{ user.displayName }}!</span
+          >
+          <button (click)="logout()" mat-raised-button color="accent">
+            Salir
+          </button>
+        </div>
+        <ng-template #showLogin>
+          <button (click)="login()" mat-raised-button color="accent">
+            Inicia con Google
+          </button>
+        </ng-template>
+        <!-- <a [routerLink]="['/auth']" mat-raised-button color="accent">Iniciar Sesion</a> -->
       </mat-toolbar-row>
 
       <mat-toolbar-row class="buttons-row">
-        <button mat-raised-button color="primary">Todos los posts</button>
-        <button mat-raised-button color="primary">Mis posts</button>
-        <button mat-raised-button color="primary">Realizar un post</button>
-        <button mat-raised-button color="primary">Contactanos</button>
+        <a mat-raised-button [routerLink]="['/']" color="primary"
+          >Todos los posts</a
+        >
+        <ng-container *ngIf="auth.user | async as user">
+          <a mat-raised-button [routerLink]="['/']" color="primary"
+            >Mis posts</a
+          >
+          <a mat-raised-button [routerLink]="['/']" color="primary"
+            >Realizar un post</a
+          >
+        </ng-container>
+
+        <a mat-raised-button [routerLink]="['/']" color="primary"
+          >Contactanos</a
+        >
       </mat-toolbar-row>
     </mat-toolbar>
     <ng-content style="height: 100%;"></ng-content>

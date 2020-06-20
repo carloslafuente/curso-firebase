@@ -56,7 +56,7 @@
   justify-content: flex-end;
   background-color: #ff4081;
 }
-.buttons-row button {
+.buttons-row a {
   margin-left: 15px;
 }
 

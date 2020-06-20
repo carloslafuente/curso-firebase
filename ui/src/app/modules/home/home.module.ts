@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
-import { NavbarModule } from 'src/app/shared/navbar/navbar.module';
+
+import { HomeComponent } from './home.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MainContentComponent } from './components/main-content/main-content.component';
 
@@ -11,7 +11,6 @@ import { MainContentComponent } from './components/main-content/main-content.com
   imports: [
     CommonModule,
     HomeRoutingModule,
-    NavbarModule,
   ],
 })
 export class HomeModule {}
