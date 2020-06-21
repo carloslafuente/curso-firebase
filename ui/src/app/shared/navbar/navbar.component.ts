@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
+import { ADMIN } from 'src/config';
 
 @Component({
   selector: 'app-nav-bar',
@@ -11,6 +12,8 @@ import { auth } from 'firebase/app';
   styleUrls: ['navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
+  adminUser: string = ADMIN;
+
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(
@@ -22,16 +25,17 @@ export class NavbarComponent implements OnInit {
     private breakpointObserver: BreakpointObserver,
     public auth: AngularFireAuth
   ) {}
+
   ngOnInit() {
-    this.auth.user.subscribe((user) => {
-      console.log(user);
-    });
+    // this.auth.user.subscribe((user) => {
+    //   console.log(user);
+    // });
   }
 
   login() {
     this.auth.signInWithPopup(new auth.GoogleAuthProvider());
   }
-  
+
   logout() {
     this.auth.signOut();
   }

@@ -38,7 +38,18 @@
         <span class="example-spacer"></span>
 
         <figure *ngIf="auth.user | async as user" class="header-avatar">
-          <img id="avatar" [src]="user.photoURL" alt="Avatar" />
+          <img
+            *ngIf="user.photoURL != null"
+            id="avatar"
+            [src]="user.photoURL"
+            alt="Avatar"
+          />
+          <img
+            *ngIf="user.photoURL == null"
+            id="avatar"
+            src="assets/imagenes/usuario.png"
+            alt="Avatar"
+          />
         </figure>
       </mat-toolbar-row>
 
@@ -48,13 +59,13 @@
             Salir
           </button>
           <span [ngStyle]="{ 'margin-left': '15px' }"
-            >Hola {{ user.displayName }}!</span
+            >Bienvenido {{ user.displayName }}!</span
           >
         </div>
         <ng-template #showLogin>
-          <button (click)="login()" mat-raised-button color="accent">
-            Inicia con Google
-          </button>
+          <a mat-raised-button [routerLink]="['/auth']" color="primary"
+            >Inicia sesion</a
+          >
         </ng-template>
         <!-- <a [routerLink]="['/auth']" mat-raised-button color="accent">Iniciar Sesion</a> -->
       </mat-toolbar-row>
@@ -64,12 +75,14 @@
           >Todos los posts</a
         >
         <ng-container *ngIf="auth.user | async as user">
-          <a mat-raised-button [routerLink]="['/']" color="primary"
-            >Mis posts</a
-          >
-          <a mat-raised-button [routerLink]="['/']" color="primary"
-            >Realizar un post</a
-          >
+          <ng-container *ngIf="user.email === adminUser">
+            <a mat-raised-button [routerLink]="['/']" color="primary"
+              >Mis posts</a
+            >
+            <a mat-raised-button [routerLink]="['/admin']" color="primary"
+              >Realizar un post</a
+            >
+          </ng-container>
         </ng-container>
 
         <a mat-raised-button [routerLink]="['/']" color="primary"

@@ -1,23 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {
-  AngularFireAuthGuard,
-  hasCustomClaim,
-  redirectUnauthorizedTo,
-  redirectLoggedInTo,
-  customClaims,
-} from '@angular/fire/auth-guard';
+import { AngularFireAuthGuard, customClaims } from '@angular/fire/auth-guard';
 import { pipe } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { ADMIN } from 'src/config';
 
-const adminOnly = () => hasCustomClaim('admin');
-const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
-const redirectLoggedInToItems = () => redirectLoggedInTo(['items']);
-const belongsToAccount = (next) => hasCustomClaim(`account-${next.params.id}`);
 const editorOnly = () =>
   pipe(
     customClaims,
-    map((claims) => claims.email === 'carlos.lafuente.dev@gmail.com')
+    map((claims) => claims.email === ADMIN)
   );
 
 const routes: Routes = [
