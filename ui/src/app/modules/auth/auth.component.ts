@@ -5,14 +5,7 @@ import { auth } from 'firebase/app';
 @Component({
   selector: 'app-auth',
   template: `
-    <div *ngIf="auth.user | async as user; else showLogin">
-      <h1>Hello {{ user.displayName }}!</h1>
-      <button (click)="logout()">Logout</button>
-    </div>
-    <ng-template #showLogin>
-      <p>Please login.</p>
-      <button (click)="login()">Login with Google</button>
-    </ng-template>
+    <app-sign-up></app-sign-up>
   `,
 })
 export class AuthComponent {
